@@ -3,7 +3,13 @@ import {fetchNoteById} from '@/lib/api';
 import NoteDetailsClient from './NoteDetails.client';
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 
-export default async function NoteDetailsPage({params}: any) {
+type ServerParams = {
+    params: {
+        id: string;
+    };
+};
+
+export default async function NoteDetailsPage({params}: ServerParams) {
     const id = Number(params.id);
     const queryClient = new QueryClient();
 
