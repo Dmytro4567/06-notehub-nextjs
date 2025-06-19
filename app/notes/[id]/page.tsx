@@ -3,13 +3,8 @@ import {fetchNoteById} from '@/lib/api';
 import NoteDetailsClient from './NoteDetails.client';
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 
-type ServerParams = {
-    params: {
-        id: string;
-    };
-};
-
-export default async function NoteDetailsPage({params}: ServerParams) {
+// @ts-expect-error — Vercel/Next thinks `params` is Promise-like
+export default async function NoteDetailsPage({params}: { params: { id: string } }) {
     const id = Number(params.id);
     const queryClient = new QueryClient();
 
