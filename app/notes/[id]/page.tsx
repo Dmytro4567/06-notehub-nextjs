@@ -3,9 +3,8 @@ import {fetchNoteById} from '@/lib/api';
 import NoteDetailsClient from './NoteDetails.client';
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore: Next.js/Vercel expects `params` to be Promise-like
-export default async function NoteDetailsPage({params}: { params: { id: string } }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function NoteDetailsPage({params}: any) {
     const id = Number(params.id);
     const queryClient = new QueryClient();
 
