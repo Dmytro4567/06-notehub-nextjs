@@ -1,7 +1,6 @@
 import {dehydrate, HydrationBoundary, QueryClient} from '@tanstack/react-query';
 import {fetchNoteById} from '@/lib/api';
 import NoteDetailsClient from './NoteDetails.client';
-import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function NoteDetailsPage({params}: any) {
@@ -14,10 +13,8 @@ export default async function NoteDetailsPage({params}: any) {
     });
 
     return (
-        <TanStackProvider>
-            <HydrationBoundary state={dehydrate(queryClient)}>
-                <NoteDetailsClient/>
-            </HydrationBoundary>
-        </TanStackProvider>
+        <HydrationBoundary state={dehydrate(queryClient)}>
+            <NoteDetailsClient/>
+        </HydrationBoundary>
     );
 }
