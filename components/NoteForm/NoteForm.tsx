@@ -1,9 +1,9 @@
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import css from './NoteForm.module.css';
-import type {Note} from '../../types/note';
+import type {Note} from '@/types/note';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
-import {createNote} from '../../lib/api';
+import {createNote} from '@/lib/api';
 
 const validationSchema = Yup.object({
     title: Yup.string().min(3).max(50).required(),
@@ -37,7 +37,10 @@ export default function NoteForm({onClose}: NoteFormProps) {
             initialValues={{title: '', content: '', tag: 'Todo'}}
             validationSchema={validationSchema}
             onSubmit={async (values) => {
-                await mutateAsync(values);
+                await mutateAsync({
+                    ...values,
+                    createdAt: new Date().toISOString(),
+                });
             }}
         >
             <Form className={css.form}>
