@@ -1,3 +1,5 @@
+'use client';
+
 import {useState} from 'react';
 import css from './App.module.css';
 import NoteList from '../NoteList/NoteList';

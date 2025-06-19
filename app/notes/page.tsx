@@ -1,6 +1,6 @@
 import App from "@/app/notes/App/App";
 
-const Notes = () => {
+const Notes = async () => {
     return <App/>
 };
 
