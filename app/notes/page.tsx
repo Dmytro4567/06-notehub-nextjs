@@ -1,5 +1,7 @@
+import App from "@/app/notes/App/App";
+
 const Notes = () => {
-    return <div>Notes</div>;
+    return <App/>
 };
 
 export default Notes;
