@@ -37,11 +37,7 @@ export default function NoteForm({onClose}: NoteFormProps) {
             initialValues={{title: '', content: '', tag: 'Todo'}}
             validationSchema={validationSchema}
             onSubmit={async (values) => {
-                await mutateAsync({
-                    ...values,
-                    createdAt: new Date().toISOString(),
-                    updatedAt: new Date().toISOString(),
-                });
+                await mutateAsync(values);
             }}
         >
             <Form className={css.form}>
