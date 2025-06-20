@@ -40,6 +40,7 @@ export default function NoteForm({onClose}: NoteFormProps) {
                 await mutateAsync({
                     ...values,
                     createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString(),
                 });
             }}
         >
