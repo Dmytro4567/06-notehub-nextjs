@@ -1,7 +1,7 @@
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import css from './NoteForm.module.css';
-import type {Note} from '@/types/note';
+import type {CreateNote, Note} from '@/types/note';
 import {useMutation, useQueryClient} from '@tanstack/react-query';
 import {createNote} from '@/lib/api';
 
@@ -25,7 +25,7 @@ export default function NoteForm({onClose}: NoteFormProps) {
     const queryClient = useQueryClient();
 
     const {mutateAsync, isPending} = useMutation({
-        mutationFn: createNote,
+        mutationFn: (note: CreateNote) => createNote(note),
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: ['notes']});
             onClose();
@@ -33,7 +33,7 @@ export default function NoteForm({onClose}: NoteFormProps) {
     });
 
     return (
-        <Formik<Pick<Note, 'title' | 'content' | 'tag'>>
+        <Formik<CreateNote>
             initialValues={{title: '', content: '', tag: 'Todo'}}
             validationSchema={validationSchema}
             onSubmit={async (values) => {
