@@ -8,7 +8,7 @@ type PageProps = {
     };
 };
 
-export default async function NoteDetailsPage({params}: PageProps) {
+export default async function NoteDetailsPage({params}: { params: { id: string } }) {
     const id = Number(params.id);
     const queryClient = new QueryClient();
 
