@@ -11,7 +11,11 @@ import {fetchNotes} from '@/lib/api';
 import type {Note} from '@/types/note';
 import {useDebounce} from 'use-debounce';
 
-export default function NotesClient() {
+interface NotesClientProps {
+    initialNotes: Note[];
+}
+
+export default function NotesClient({initialNotes}: NotesClientProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);
@@ -27,6 +31,10 @@ export default function NotesClient() {
         queryKey: ['notes', debouncedSearch, page],
         queryFn: () => fetchNotes(debouncedSearch, page, perPage),
         placeholderData: keepPreviousData,
+        initialData: {
+            notes: initialNotes,
+            totalPages: 1,
+        },
     });
 
     const handleSearchChange = (value: string) => {
