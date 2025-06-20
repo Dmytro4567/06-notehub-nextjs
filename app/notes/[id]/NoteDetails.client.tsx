@@ -26,7 +26,7 @@ export default function NoteDetailsClient() {
                     <button className={css.editBtn}>Edit note</button>
                 </div>
                 <p className={css.content}>{note.content}</p>
-                <p className={css.date}>{new Date(note.createdAt).toLocaleDateString()}</p>
+                <p className={css.date}>{note.createdAt ? new Date(note.createdAt).toLocaleDateString() : 'Unknown date'}</p>
             </div>
         </div>
     );
